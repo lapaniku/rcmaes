@@ -5,13 +5,131 @@
 
 using namespace Rcpp;
 
-// rcpp_hello_world
-List rcpp_hello_world();
-RcppExport SEXP rcmaes_rcpp_hello_world() {
+// testCmaesReadPara
+void testCmaesReadPara(List sp, long dim);
+RcppExport SEXP rcmaes_testCmaesReadPara(SEXP spSEXP, SEXP dimSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< List >::type sp(spSEXP);
+    Rcpp::traits::input_parameter< long >::type dim(dimSEXP);
+    testCmaesReadPara(sp, dim);
+    return R_NilValue;
+END_RCPP
+}
+// testCmaesRand
+List testCmaesRand(List rand);
+RcppExport SEXP rcmaes_testCmaesRand(SEXP randSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(rcpp_hello_world());
+    Rcpp::traits::input_parameter< List >::type rand(randSEXP);
+    rcpp_result_gen = Rcpp::wrap(testCmaesRand(rand));
+    return rcpp_result_gen;
+END_RCPP
+}
+// testMatrix
+NumericMatrix testMatrix(NumericMatrix M, long rows, long cols);
+RcppExport SEXP rcmaes_testMatrix(SEXP MSEXP, SEXP rowsSEXP, SEXP colsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type M(MSEXP);
+    Rcpp::traits::input_parameter< long >::type rows(rowsSEXP);
+    Rcpp::traits::input_parameter< long >::type cols(colsSEXP);
+    rcpp_result_gen = Rcpp::wrap(testMatrix(M, rows, cols));
+    return rcpp_result_gen;
+END_RCPP
+}
+// testCmaes
+List testCmaes(List cmaes);
+RcppExport SEXP rcmaes_testCmaes(SEXP cmaesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< List >::type cmaes(cmaesSEXP);
+    rcpp_result_gen = Rcpp::wrap(testCmaes(cmaes));
+    return rcpp_result_gen;
+END_RCPP
+}
+// boundaryTransformationInit
+List boundaryTransformationInit(List parameters);
+RcppExport SEXP rcmaes_boundaryTransformationInit(SEXP parametersSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< List >::type parameters(parametersSEXP);
+    rcpp_result_gen = Rcpp::wrap(boundaryTransformationInit(parameters));
+    return rcpp_result_gen;
+END_RCPP
+}
+// boundaryTransformation
+NumericVector boundaryTransformation(List boundaries, NumericVector pop);
+RcppExport SEXP rcmaes_boundaryTransformation(SEXP boundariesSEXP, SEXP popSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< List >::type boundaries(boundariesSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type pop(popSEXP);
+    rcpp_result_gen = Rcpp::wrap(boundaryTransformation(boundaries, pop));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cmaesInit
+List cmaesInit(NumericVector values, NumericVector stdDevs, long int inseed);
+RcppExport SEXP rcmaes_cmaesInit(SEXP valuesSEXP, SEXP stdDevsSEXP, SEXP inseedSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type values(valuesSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type stdDevs(stdDevsSEXP);
+    Rcpp::traits::input_parameter< long int >::type inseed(inseedSEXP);
+    rcpp_result_gen = Rcpp::wrap(cmaesInit(values, stdDevs, inseed));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cmaesSamplePopulation
+List cmaesSamplePopulation(List cmaes);
+RcppExport SEXP rcmaes_cmaesSamplePopulation(SEXP cmaesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< List >::type cmaes(cmaesSEXP);
+    rcpp_result_gen = Rcpp::wrap(cmaesSamplePopulation(cmaes));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cmaesUpdateDistribution
+List cmaesUpdateDistribution(List cmaes, NumericVector rgFunValVec);
+RcppExport SEXP rcmaes_cmaesUpdateDistribution(SEXP cmaesSEXP, SEXP rgFunValVecSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< List >::type cmaes(cmaesSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type rgFunValVec(rgFunValVecSEXP);
+    rcpp_result_gen = Rcpp::wrap(cmaesUpdateDistribution(cmaes, rgFunValVec));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cmaesInitWithSamplePopulation
+List cmaesInitWithSamplePopulation(NumericVector values, NumericVector stdDevs);
+RcppExport SEXP rcmaes_cmaesInitWithSamplePopulation(SEXP valuesSEXP, SEXP stdDevsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type values(valuesSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type stdDevs(stdDevsSEXP);
+    rcpp_result_gen = Rcpp::wrap(cmaesInitWithSamplePopulation(values, stdDevs));
+    return rcpp_result_gen;
+END_RCPP
+}
+// testConvergence
+NumericMatrix testConvergence(int times);
+RcppExport SEXP rcmaes_testConvergence(SEXP timesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type times(timesSEXP);
+    rcpp_result_gen = Rcpp::wrap(testConvergence(times));
     return rcpp_result_gen;
 END_RCPP
 }

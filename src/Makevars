@@ -1,0 +1,4 @@
+CC=gcc
+CXX=gcc
+CXXFLAGS = -ggdb -O0
+CFLAGS = -ggdb -O0
