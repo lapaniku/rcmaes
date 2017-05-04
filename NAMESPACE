@@ -1,0 +1,3 @@
+useDynLib(rcmaes)
+exportPattern("^[[:alpha:]]+")
+importFrom(Rcpp, evalCpp)
