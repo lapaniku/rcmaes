@@ -6,6 +6,9 @@
 //  Copyright © 2017 RocketScience.ai. All rights reserved.
 //
 
+//'@useDynLib rcmaes
+//'@importFrom Rcpp evalCpp
+
 #include <Rcpp.h>
 #include <math.h>
 #include <stdio.h>
@@ -643,6 +646,7 @@ List testCmaes(List cmaes) {
 //' Boundary transformation rules init
 //' @param List of $max and 4min values
 //' @return List of boundary transformation parameters
+//' @export
 // [[Rcpp::export]]
 List boundaryTransformationInit(List parameters) {
   
@@ -674,6 +678,7 @@ List boundaryTransformationInit(List parameters) {
 //' @param boundaries List of boundary transformation parameters
 //' @param pop Population for boundary transformation
 //' @return Vector of population values after boundary transformation
+//' @export
 // [[Rcpp::export]]
 NumericVector boundaryTransformation(List boundaries, NumericVector pop) {
   cmaes_boundary_transformation_t boundary_struct = boundaryTransformationToStruct(boundaries);
