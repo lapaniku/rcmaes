@@ -636,8 +636,12 @@ List testCmaes(List cmaes) {
   return cmaesToList(cmaes_struct);
 }
 
-// CMAES
+/* 
+ * CMAES related
+ */
 
+//' @param List of $max and 4min values
+//' @return List of boundary transformation parameters
 // [[Rcpp::export]]
 List boundaryTransformationInit(List parameters) {
   
@@ -665,6 +669,9 @@ List boundaryTransformationInit(List parameters) {
   return boundaryTranfrormToList(boundaries);
 }
 
+//' @param boundaries List of boundary transformation parameters
+//' @param pop Population for boundary transformation
+//' @return Vector of population values after boundary transformation
 // [[Rcpp::export]]
 NumericVector boundaryTransformation(List boundaries, NumericVector pop) {
   cmaes_boundary_transformation_t boundary_struct = boundaryTransformationToStruct(boundaries);

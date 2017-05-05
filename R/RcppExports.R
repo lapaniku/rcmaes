@@ -17,10 +17,15 @@ testCmaes <- function(cmaes) {
     .Call('rcmaes_testCmaes', PACKAGE = 'rcmaes', cmaes)
 }
 
+#' @param List of $max and 4min values
+#' @return List of boundary transformation parameters
 boundaryTransformationInit <- function(parameters) {
     .Call('rcmaes_boundaryTransformationInit', PACKAGE = 'rcmaes', parameters)
 }
 
+#' @param boundaries List of boundary transformation parameters
+#' @param pop Population for boundary transformation
+#' @return Vector of population values after boundary transformation
 boundaryTransformation <- function(boundaries, pop) {
     .Call('rcmaes_boundaryTransformation', PACKAGE = 'rcmaes', boundaries, pop)
 }
