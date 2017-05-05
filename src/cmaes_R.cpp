@@ -697,6 +697,11 @@ NumericVector boundaryTransformation(List boundaries, NumericVector pop) {
   return Rcpp::wrap(result);
 }
 
+//' CMA-ES parameters init
+//' @param values Initial population
+//' @param stdDevs Standart deviations
+//' @return inseed Initial random seed
+//' @export
 // [[Rcpp::export]]
 List cmaesInit(NumericVector values, NumericVector stdDevs, long int inseed) {
   
@@ -716,45 +721,29 @@ List cmaesInit(NumericVector values, NumericVector stdDevs, long int inseed) {
   //return List::create();
 }
 
+//' CMA-ES sample population for each iteration
+//' @param Current CMA-ES parameters
+//' @return New cmaes parameters. New population could be taken from cmaes$rgrgx value
+//' @export
 // [[Rcpp::export]]
 List cmaesSamplePopulation(List cmaes) {
   D printf("-- Call: cmaesSamplePopulation\n");
   cmaes_t cmaes_struct = listToCmaes(cmaes);
-  
-  cmaes_WriteToFile(&cmaes_struct, "clock", "clock.dat");
-  
-  
+
   D printf("Done: listToCmaes\n");
   D printf("sp.N: %d\n", cmaes_struct.sp.N);
   D printf("sp.diagonalCov: %f\n", cmaes_struct.sp.diagonalCov);
   D printf("gen: %f\n", cmaes_struct.gen);
   
-  /*
-   
-  double dpopsize = cmaes_Get(&cmaes_struct, "lambda");
-  int popsize = (int) (dpopsize + 1e-5); //in case of a floating point rounding issue
-  D printf("Popsize: %d\n", popsize);
-  
-  double *const *pop = cmaes_SamplePopulation(&cmaes_struct);
-  
-  
-  double *popCopy = (double *)malloc(popsize * sizeof(double));
-  memcpy(popCopy, pop, popsize * sizeof(double));
-  //free(pop);
-  
-  std::vector<double> popVec(popCopy, popCopy + popsize);
-  
-  List result = List::create();
-  
-  result["cmaes"] = cmaesToList(cmaes_struct);
-  result["pop"] = popVec;
-  return result;
-  */
-
   cmaes_SamplePopulation(&cmaes_struct);
   return cmaesToList(cmaes_struct);
 }
 
+//' CMA-ES population distribution update for each iteration
+//' @param cmaes Current CMA-ES parameters
+//' @param rgFuncValueVec cost function values
+//' @return New cmaes parameters
+//' @export
 // [[Rcpp::export]]
 List cmaesUpdateDistribution(List cmaes, NumericVector rgFunValVec) {
   D printf("-- Call: cmaesUpdateDistribution\n");

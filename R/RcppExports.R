@@ -38,14 +38,28 @@ boundaryTransformation <- function(boundaries, pop) {
     .Call('rcmaes_boundaryTransformation', PACKAGE = 'rcmaes', boundaries, pop)
 }
 
+#' CMA-ES parameters init
+#' @param values Initial population
+#' @param stdDevs Standart deviations
+#' @return inseed Initial random seed
+#' @export
 cmaesInit <- function(values, stdDevs, inseed) {
     .Call('rcmaes_cmaesInit', PACKAGE = 'rcmaes', values, stdDevs, inseed)
 }
 
+#' CMA-ES sample population for each iteration
+#' @param Current CMA-ES parameters
+#' @return New cmaes parameters. New population could be taken from cmaes$rgrgx value
+#' @export
 cmaesSamplePopulation <- function(cmaes) {
     .Call('rcmaes_cmaesSamplePopulation', PACKAGE = 'rcmaes', cmaes)
 }
 
+#' CMA-ES population distribution update for each iteration
+#' @param cmaes Current CMA-ES parameters
+#' @param rgFuncValueVec cost function values
+#' @return New cmaes parameters
+#' @export
 cmaesUpdateDistribution <- function(cmaes, rgFunValVec) {
     .Call('rcmaes_cmaesUpdateDistribution', PACKAGE = 'rcmaes', cmaes, rgFunValVec)
 }

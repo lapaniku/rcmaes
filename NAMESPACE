@@ -2,5 +2,8 @@
 
 export(boundaryTransformation)
 export(boundaryTransformationInit)
+export(cmaesInit)
+export(cmaesSamplePopulation)
+export(cmaesUpdateDistribution)
 importFrom(Rcpp,evalCpp)
 useDynLib(rcmaes)
