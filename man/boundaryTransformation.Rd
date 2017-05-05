@@ -2,6 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{boundaryTransformation}
 \alias{boundaryTransformation}
+\title{Linear transformation of parameter vector to fit values to boundaries}
 \usage{
 boundaryTransformation(boundaries, pop)
 }
@@ -12,5 +13,8 @@ boundaryTransformation(boundaries, pop)
 }
 \value{
 Vector of population values after boundary transformation
+}
+\description{
+Linear transformation of parameter vector to fit values to boundaries
 }
 

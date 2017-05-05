@@ -2,6 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{boundaryTransformationInit}
 \alias{boundaryTransformationInit}
+\title{Boundary transformation rules init}
 \usage{
 boundaryTransformationInit(parameters)
 }
@@ -10,5 +11,8 @@ boundaryTransformationInit(parameters)
 }
 \value{
 List of boundary transformation parameters
+}
+\description{
+Boundary transformation rules init
 }
 

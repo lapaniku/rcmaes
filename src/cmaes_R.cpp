@@ -640,6 +640,7 @@ List testCmaes(List cmaes) {
  * CMAES related
  */
 
+//' Boundary transformation rules init
 //' @param List of $max and 4min values
 //' @return List of boundary transformation parameters
 // [[Rcpp::export]]
@@ -669,6 +670,7 @@ List boundaryTransformationInit(List parameters) {
   return boundaryTranfrormToList(boundaries);
 }
 
+//' Linear transformation of parameter vector to fit values to boundaries
 //' @param boundaries List of boundary transformation parameters
 //' @param pop Population for boundary transformation
 //' @return Vector of population values after boundary transformation
