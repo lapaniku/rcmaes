@@ -15,4 +15,3 @@ New cmaes parameters. New population could be taken from cmaes$rgrgx value
 \description{
 CMA-ES sample population for each iteration
 }
-

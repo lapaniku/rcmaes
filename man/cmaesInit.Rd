@@ -17,4 +17,3 @@ inseed Initial random seed
 \description{
 CMA-ES parameters init
 }
-
