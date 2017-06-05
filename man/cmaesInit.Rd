@@ -4,15 +4,19 @@
 \alias{cmaesInit}
 \title{CMA-ES parameters init}
 \usage{
-cmaesInit(values, stdDevs, inseed)
+cmaesInit(values, stdDevs, inseed, lambda)
 }
 \arguments{
 \item{values}{Initial population}
 
 \item{stdDevs}{Standart deviations}
+
+\item{inseed}{Initial random seed}
+
+\item{lambda}{Population size}
 }
 \value{
-inseed Initial random seed
+cmaes struct
 }
 \description{
 CMA-ES parameters init
