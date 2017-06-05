@@ -700,10 +700,12 @@ NumericVector boundaryTransformation(List boundaries, NumericVector pop) {
 //' CMA-ES parameters init
 //' @param values Initial population
 //' @param stdDevs Standart deviations
-//' @return inseed Initial random seed
+//' @param inseed Initial random seed
+//' @param lambda Population size
+//' @return cmaes struct
 //' @export
 // [[Rcpp::export]]
-List cmaesInit(NumericVector values, NumericVector stdDevs, long int inseed) {
+List cmaesInit(NumericVector values, NumericVector stdDevs, long int inseed, int lambda) {
   
   D printf("Parameters conversion\n");
   double *parameters = vectorToArrayP(as<std::vector<double> >(values));
@@ -714,7 +716,7 @@ List cmaesInit(NumericVector values, NumericVector stdDevs, long int inseed) {
   double *arFunvals;
   cmaes_t evo;
   D printf("CMA-ES init\n");
-  arFunvals = cmaes_init(&evo, values.size(), parameters, std_devs, inseed, 0, "no");
+  arFunvals = cmaes_init(&evo, values.size(), parameters, std_devs, inseed, lambda, "no");
   D printf("Done\n");
   
   return cmaesToList(evo);

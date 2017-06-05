@@ -41,10 +41,12 @@ boundaryTransformation <- function(boundaries, pop) {
 #' CMA-ES parameters init
 #' @param values Initial population
 #' @param stdDevs Standart deviations
-#' @return inseed Initial random seed
+#' @param inseed Initial random seed
+#' @param lambda Population size
+#' @return cmaes struct
 #' @export
-cmaesInit <- function(values, stdDevs, inseed) {
-    .Call('rcmaes_cmaesInit', PACKAGE = 'rcmaes', values, stdDevs, inseed)
+cmaesInit <- function(values, stdDevs, inseed, lambda) {
+    .Call('rcmaes_cmaesInit', PACKAGE = 'rcmaes', values, stdDevs, inseed, lambda)
 }
 
 #' CMA-ES sample population for each iteration

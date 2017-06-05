@@ -75,15 +75,16 @@ BEGIN_RCPP
 END_RCPP
 }
 // cmaesInit
-List cmaesInit(NumericVector values, NumericVector stdDevs, long int inseed);
-RcppExport SEXP rcmaes_cmaesInit(SEXP valuesSEXP, SEXP stdDevsSEXP, SEXP inseedSEXP) {
+List cmaesInit(NumericVector values, NumericVector stdDevs, long int inseed, int lambda);
+RcppExport SEXP rcmaes_cmaesInit(SEXP valuesSEXP, SEXP stdDevsSEXP, SEXP inseedSEXP, SEXP lambdaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector >::type values(valuesSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type stdDevs(stdDevsSEXP);
     Rcpp::traits::input_parameter< long int >::type inseed(inseedSEXP);
-    rcpp_result_gen = Rcpp::wrap(cmaesInit(values, stdDevs, inseed));
+    Rcpp::traits::input_parameter< int >::type lambda(lambdaSEXP);
+    rcpp_result_gen = Rcpp::wrap(cmaesInit(values, stdDevs, inseed, lambda));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -132,4 +133,24 @@ BEGIN_RCPP
     rcpp_result_gen = Rcpp::wrap(testConvergence(times));
     return rcpp_result_gen;
 END_RCPP
+}
+
+static const R_CallMethodDef CallEntries[] = {
+    {"rcmaes_testCmaesReadPara", (DL_FUNC) &rcmaes_testCmaesReadPara, 2},
+    {"rcmaes_testCmaesRand", (DL_FUNC) &rcmaes_testCmaesRand, 1},
+    {"rcmaes_testMatrix", (DL_FUNC) &rcmaes_testMatrix, 3},
+    {"rcmaes_testCmaes", (DL_FUNC) &rcmaes_testCmaes, 1},
+    {"rcmaes_boundaryTransformationInit", (DL_FUNC) &rcmaes_boundaryTransformationInit, 1},
+    {"rcmaes_boundaryTransformation", (DL_FUNC) &rcmaes_boundaryTransformation, 2},
+    {"rcmaes_cmaesInit", (DL_FUNC) &rcmaes_cmaesInit, 4},
+    {"rcmaes_cmaesSamplePopulation", (DL_FUNC) &rcmaes_cmaesSamplePopulation, 1},
+    {"rcmaes_cmaesUpdateDistribution", (DL_FUNC) &rcmaes_cmaesUpdateDistribution, 2},
+    {"rcmaes_cmaesInitWithSamplePopulation", (DL_FUNC) &rcmaes_cmaesInitWithSamplePopulation, 2},
+    {"rcmaes_testConvergence", (DL_FUNC) &rcmaes_testConvergence, 1},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_rcmaes(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }
